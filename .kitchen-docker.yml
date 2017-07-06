@@ -1,0 +1,19 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  name: salt_solo
+  formula: zulip
+  state_top:
+    base:
+      "*":
+        - zulip
+
+platforms:
+  - name: ubuntu-xenial
+  - name: ubuntu-trusty
+
+suites:
+  - name: default
+

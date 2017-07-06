@@ -1,0 +1,44 @@
+---
+driver:
+  name: vagrant
+  customize:
+    memory: 2048
+  network:
+    - ["forwarded_port", {guest: 80, host: 8080}]
+    - ["forwarded_port", {guest: 443, host: 8443}]
+
+provisioner:
+  name: salt_solo
+  salt_bootstrap_options: -P
+  formula: zulip
+  state_top:
+    base:
+      "*":
+        - zulip
+
+platforms:
+  - name: ubuntu/trusty64
+#  - name: debian/jessie64
+
+suites:
+  - name: default
+
+  # - name: custom
+  #   provisioner:
+  #     pillars-from-files:
+  #       zulip.sls: pillar-custom.sls
+  #     pillars:
+  #       top.sls:
+  #         base:
+  #           "*":
+  #             - zulip
+ 
+  # - name: example
+  #   provisioner:
+  #     pillars-from-files:
+  #       zulip.sls: pillar.example
+  #     pillars:
+  #       top.sls:
+  #         base:
+  #           "*":
+  #             - zulip
