@@ -7,3 +7,10 @@
 #     - name: {{ zulip.service.name }}
 #     - enable: {{ zulip.service.enable }}
 #     - reload: {{ zulip.service.reload }}
+
+zulip_service_restart:
+  cmd.run:
+    - name: /home/zulip/deployments/current/scripts/restart-server
+    - runas: zulip
+    - onchanges:
+      - file: zulip_config

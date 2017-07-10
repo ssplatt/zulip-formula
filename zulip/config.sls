@@ -10,11 +10,12 @@ zulip_config:
     - user: root
     - group: root
     - mode: 0644
+    - makedirs: true
     
 zulip_init_db:
  cmd.run:
    - name: /home/zulip/deployments/current/scripts/setup/initialize-database
-   - user: zulip
+   - runas: zulip
    - unless: psql -d zulip -c "\dt" | grep "(38 rows)"
-   - require:
+   - onchanges:
      - cmd: zulip_install_script
