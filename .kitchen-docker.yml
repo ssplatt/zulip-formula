@@ -16,4 +16,13 @@ platforms:
 
 suites:
   - name: default
-
+  
+  - name: custom
+    provisioner:
+      pillars-from-files:
+        zulip.sls: pillar-custom.sls
+      pillars:
+        top.sls:
+          base:
+            "*":
+              - zulip

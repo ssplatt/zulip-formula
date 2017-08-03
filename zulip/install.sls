@@ -40,4 +40,3 @@ zulip_install_script:
     - unless: ls /etc/zulip
     - require:
       - cmd: zulip_mv_archive
-      
