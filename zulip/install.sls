@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
-
 {% from "zulip/map.jinja" import zulip with context %}
+
+{% if grains.oscodename == "xenial" %}
+zulip_remove_upstart:
+  pkg.purged:
+    - name: upstart
+{% endif %}
 
 zulip-pkg:
   archive.extracted:
